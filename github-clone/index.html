@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OctoHub</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <svg class="svg-sprite" aria-hidden="true">
+      <symbol id="icon-brand" viewBox="0 0 24 24">
+        <path d="M12 2 3.5 6.75v10.5L12 22l8.5-4.75V6.75L12 2Zm0 2.3 6.5 3.63v7.14L12 18.7l-6.5-3.63V7.93L12 4.3Zm0 3.2a2.8 2.8 0 0 0-1 5.42v1.58H8v2h8v-2h-3v-1.58a2.8 2.8 0 0 0-1-5.42Zm0 2a.8.8 0 1 1 0 1.6.8.8 0 0 1 0-1.6Z"/>
+      </symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24">
+        <path d="M4 7h16v2H4V7Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Z"/>
+      </symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24">
+        <path d="M10.8 4a6.8 6.8 0 0 1 5.37 10.97l3.43 3.43-1.4 1.4-3.43-3.43A6.8 6.8 0 1 1 10.8 4Zm0 2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6Z"/>
+      </symbol>
+      <symbol id="icon-bell" viewBox="0 0 24 24">
+        <path d="M12 22a2.7 2.7 0 0 0 2.55-1.8h-5.1A2.7 2.7 0 0 0 12 22Zm7-5.2c-.8-.95-1.3-2.23-1.3-3.8v-2.1A5.73 5.73 0 0 0 13 5.27V3h-2v2.27a5.73 5.73 0 0 0-4.7 5.63V13c0 1.57-.5 2.85-1.3 3.8l-.7.85V19h15.4v-1.35l-.7-.85ZM7.12 17c.77-1.16 1.18-2.53 1.18-4v-2.1a3.7 3.7 0 1 1 7.4 0V13c0 1.47.41 2.84 1.18 4H7.12Z"/>
+      </symbol>
+      <symbol id="icon-plus" viewBox="0 0 24 24">
+        <path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z"/>
+      </symbol>
+      <symbol id="icon-repo" viewBox="0 0 24 24">
+        <path d="M7 3h10a2 2 0 0 1 2 2v15.5a.5.5 0 0 1-.78.42L16 19.44l-2.22 1.48a.5.5 0 0 1-.56 0L11 19.44l-2.22 1.48a.5.5 0 0 1-.56 0L6 19.44l-2.22 1.48A.5.5 0 0 1 3 20.5V5a2 2 0 0 1 2-2h2Zm0 2H5v12.63l.72-.48a.5.5 0 0 1 .56 0L8.5 18.63l2.22-1.48a.5.5 0 0 1 .56 0l2.22 1.48 2.22-1.48a.5.5 0 0 1 .56 0l.72.48V5H7Zm2 3h6v2H9V8Zm0 4h6v2H9v-2Z"/>
+      </symbol>
+      <symbol id="icon-code" viewBox="0 0 24 24">
+        <path d="m8.7 16.3-1.4 1.4L1.6 12l5.7-5.7 1.4 1.4L4.4 12l4.3 4.3Zm6.6 0 4.3-4.3-4.3-4.3 1.4-1.4 5.7 5.7-5.7 5.7-1.4-1.4ZM12.52 4l1.93.52L11.48 20l-1.93-.52L12.52 4Z"/>
+      </symbol>
+      <symbol id="icon-issue" viewBox="0 0 24 24">
+        <path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm0 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm0 11.6a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Zm-1-9.1h2v7h-2v-7Z"/>
+      </symbol>
+      <symbol id="icon-pr" viewBox="0 0 24 24">
+        <path d="M7 4a3 3 0 0 1 1 5.83v4.34a3 3 0 1 1-2 0V9.83A3 3 0 0 1 7 4Zm10.5.5L21 8l-3.5 3.5-1.42-1.42L17.17 9H16a3 3 0 0 0-3 3v2.17a3 3 0 1 1-2 0V12a5 5 0 0 1 5-5h1.17l-1.09-1.08L17.5 4.5ZM7 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0 10a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm5-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/>
+      </symbol>
+      <symbol id="icon-folder" viewBox="0 0 24 24">
+        <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H10l2 2h6.5A2.5 2.5 0 0 1 21 8.5v8A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5v-10Zm2.5-.5a.5.5 0 0 0-.5.5V8h14a.5.5 0 0 0-.5-.5h-7.33l-2-2H5.5ZM5 10v6.5a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5V10H5Z"/>
+      </symbol>
+      <symbol id="icon-file" viewBox="0 0 24 24">
+        <path d="M6 3h8l5 5v13H6V3Zm2 2v14h9V9h-4V5H8Zm7 .41V7h1.59L15 5.41Z"/>
+      </symbol>
+      <symbol id="icon-star" viewBox="0 0 24 24">
+        <path d="m12 2.8 2.83 5.74 6.34.92-4.59 4.47 1.08 6.31L12 17.26l-5.66 2.98 1.08-6.31-4.59-4.47 6.34-.92L12 2.8Zm0 4.52-1.52 3.08-3.4.5 2.46 2.39-.58 3.38L12 15.07l3.04 1.6-.58-3.38 2.46-2.4-3.4-.49L12 7.32Z"/>
+      </symbol>
+      <symbol id="icon-fork" viewBox="0 0 24 24">
+        <path d="M7 3a3 3 0 0 1 1 5.83V10a3 3 0 0 0 3 3h2a5 5 0 0 1 5 5v.17a3 3 0 1 1-2 0V18a3 3 0 0 0-3-3h-2a5 5 0 0 1-5-5V8.83A3 3 0 0 1 7 3Zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm10 15a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/>
+      </symbol>
+      <symbol id="icon-eye" viewBox="0 0 24 24">
+        <path d="M12 5c5.2 0 8.4 4.2 9.56 6.1a1.7 1.7 0 0 1 0 1.8C20.4 14.8 17.2 19 12 19s-8.4-4.2-9.56-6.1a1.7 1.7 0 0 1 0-1.8C3.6 9.2 6.8 5 12 5Zm0 2c-4.08 0-6.75 3.28-7.77 5 1.02 1.72 3.69 5 7.77 5s6.75-3.28 7.77-5C18.75 10.28 16.08 7 12 7Zm0 1.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm0 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/>
+      </symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24">
+        <path d="M8 7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2V7Zm2 0v11h9V7h-9ZM3 4a2 2 0 0 1 2-2h10v2H5v12H3V4Z"/>
+      </symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24">
+        <path d="M11 4h2v8.17l3.59-3.58L18 10l-6 6-6-6 1.41-1.41L11 12.17V4ZM5 18h14v2H5v-2Z"/>
+      </symbol>
+      <symbol id="icon-branch" viewBox="0 0 24 24">
+        <path d="M7 3a3 3 0 0 1 1 5.83v5.34a3 3 0 1 1-2 0V8.83A3 3 0 0 1 7 3Zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm10-2a3 3 0 0 1 1 5.83V10a5 5 0 0 1-5 5h-1v-2h1a3 3 0 0 0 3-3V8.83A3 3 0 0 1 17 3Zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM7 16a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/>
+      </symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="m9.4 16.6-4-4L4 14l5.4 5.4L20.8 8 19.4 6.6l-10 10Z"/>
+      </symbol>
+    </svg>
+
+    <header class="topbar">
+      <button class="icon-btn mobile-menu" id="menuButton" aria-label="Abrir menu" title="Menu">
+        <svg><use href="#icon-menu"></use></svg>
+      </button>
+      <a class="brand" href="#" aria-label="RepoHub">
+        <svg><use href="#icon-brand"></use></svg>
+      </a>
+
+      <div class="search-combo">
+        <label class="global-search" for="globalSearch">
+          <svg><use href="#icon-search"></use></svg>
+          <input id="globalSearch" type="search" placeholder="Search or jump to..." autocomplete="off">
+        </label>
+        <div class="search-suggestions hidden" id="globalSuggestions"></div>
+      </div>
+
+      <div class="dropdown top-repos">
+        <button class="topbar-dropdown-btn" id="repositoriesButton" data-dropdown-target="repositoriesMenu" aria-expanded="false">
+          Repositories
+        </button>
+        <div class="dropdown-menu repositories-menu hidden" id="repositoriesMenu" role="menu">
+          <input class="repo-filter" id="repositoriesFilter" type="search" placeholder="Find a repository" autocomplete="off">
+          <div id="repositoriesList"></div>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Principal">
+        <a href="#" data-tab-target="pulls">Pull requests</a>
+        <a href="#" data-tab-target="issues">Issues</a>
+        <a href="#" data-action="codespaces">Codespaces</a>
+      <a href="#" data-tab-target="marketplace">Marketplace</a>
+      <div class="top-actions">
+        <button class="icon-btn" id="quickCreateButton" aria-label="Crear nuevo" title="Crear nuevo">
+          <svg><use href="#icon-plus"></use></svg>
+        </button>
+        <button class="icon-btn" id="notificationsButton" aria-label="Notificaciones" title="Notificaciones">
+          <svg><use href="#icon-bell"></use></svg>
+        </button>
+        <span class="avatar small" aria-label="Usuario">A</span>
+      </div>
+    </header>
+
+    <aside class="mobile-drawer" id="mobileDrawer" aria-label="Menu movil">
+      <div class="search-combo drawer-combo">
+        <label class="drawer-search" for="drawerSearch">
+          <svg><use href="#icon-search"></use></svg>
+          <input id="drawerSearch" type="search" placeholder="Search or jump to..." autocomplete="off">
+        </label>
+        <div class="search-suggestions hidden" id="drawerSuggestions"></div>
+      </div>
+      <a href="#" data-tab-target="pulls">Pull requests</a>
+      <a href="#" data-tab-target="issues">Issues</a>
+      <a href="#" data-action="codespaces">Codespaces</a>
+      <a href="#" data-tab-target="marketplace">Marketplace</a>
+      <a href="#" data-search-query="explore">Explore</a>
+    </aside>
+
+    <main>
+      <section class="repo-hero" aria-labelledby="repo-title">
+        <div class="repo-heading">
+          <svg class="repo-icon"><use href="#icon-repo"></use></svg>
+          <h1 id="repo-title"><a href="#">agmz</a><span>/</span><a href="#">hello-codex</a></h1>
+          <span class="pill">Public</span>
+        </div>
+        <div class="repo-actions" aria-label="Acciones del repositorio">
+          <button class="split-btn" id="watchButton">
+            <span><svg><use href="#icon-eye"></use></svg> Watch</span>
+            <strong id="watchCount">42</strong>
+          </button>
+          <button class="split-btn" id="forkButton">
+            <span><svg><use href="#icon-fork"></use></svg> Fork</span>
+            <strong id="forkCount">128</strong>
+          </button>
+          <button class="split-btn primary-toggle" id="starButton" aria-pressed="false">
+            <span><svg><use href="#icon-star"></use></svg> Star</span>
+            <strong id="starCount">1.4k</strong>
+          </button>
+        </div>
+      </section>
+
+      <nav class="repo-tabs" aria-label="Repositorio">
+        <button class="tab active" data-tab="code">
+          <svg><use href="#icon-code"></use></svg>
+          Code
+        </button>
+        <button class="tab" data-tab="issues">
+          <svg><use href="#icon-issue"></use></svg>
+          Issues
+          <span>12</span>
+        </button>
+        <button class="tab" data-tab="pulls">
+          <svg><use href="#icon-pr"></use></svg>
+          Pull requests
+          <span>4</span>
+        </button>
+        <button class="tab" data-tab="marketplace">
+          <svg><use href="#icon-download"></use></svg>
+          Marketplace
+        </button>
+      </nav>
+
+      <div class="workspace">
+        <section class="content-view active" id="codeView" aria-label="Codigo">
+          <div class="repo-toolbar">
+            <button class="btn">
+              <svg><use href="#icon-branch"></use></svg>
+              main
+            </button>
+            <div class="branch-meta">
+              <strong>23 branches</strong>
+              <strong>18 tags</strong>
+            </div>
+            <label class="file-search" for="fileSearch">
+              <svg><use href="#icon-search"></use></svg>
+              <input id="fileSearch" type="search" placeholder="Find a file">
+            </label>
+            <div class="dropdown toolbar-dropdown">
+              <button class="btn" id="addFileButton" data-dropdown-target="addFileMenu" aria-expanded="false">Add file</button>
+              <div class="dropdown-menu hidden" id="addFileMenu" role="menu">
+                <button type="button" role="menuitem" data-file-action="create">Create new file</button>
+                <button type="button" role="menuitem" data-file-action="upload">Upload files</button>
+              </div>
+            </div>
+            <div class="dropdown toolbar-dropdown">
+              <button class="btn success" id="codeButton" data-dropdown-target="codeMenu" aria-expanded="false">Code</button>
+              <div class="dropdown-menu code-menu hidden" id="codeMenu" role="menu">
+                <strong>Clone</strong>
+                <button type="button" role="menuitem" data-code-action="clone">Local (HTTPS/SSH)</button>
+                <button type="button" role="menuitem" data-code-action="codespaces">Codespaces</button>
+                <button type="button" role="menuitem" data-code-action="download">Download ZIP</button>
+              </div>
+            </div>
+            <input class="hidden" id="uploadInput" type="file" multiple>
+          </div>
+
+          <div class="main-grid">
+            <div class="repo-column">
+              <section class="file-browser" aria-labelledby="latest-commit">
+                <header class="commit-strip">
+                  <span class="avatar tiny" aria-label="Autor">A</span>
+                  <div>
+                    <h2 id="latest-commit">agmz <span>polish dashboard spacing</span></h2>
+                    <p id="commitMessage">Latest commit 8f31c9a · 2 hours ago</p>
+                  </div>
+                  <a href="#">312 commits</a>
+                </header>
+                <div class="file-list" id="fileList"></div>
+              </section>
+
+              <article class="readme">
+                <header>
+                  <h2>README.md</h2>
+                  <button class="icon-btn" aria-label="Copiar README" title="Copiar">
+                    <svg><use href="#icon-copy"></use></svg>
+                  </button>
+                </header>
+                <div class="markdown-body">
+                  <h3>Hello Codex</h3>
+                  <p>Utilities for keeping repository dashboards tidy, review queues visible, and release notes close to the code that ships them.</p>
+                  <pre><code>npm install
+npm run dev</code></pre>
+                  <h4>Estado</h4>
+                  <ul>
+                    <li>Repository shell with file activity and review status.</li>
+                    <li>Lightweight scripts for local preview builds.</li>
+                    <li>Small surface area, plain files, fast iteration.</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+
+            <aside class="repo-sidebar" aria-label="Resumen">
+              <section class="side-section">
+                <h2>About</h2>
+                <p>Repository dashboard helpers for focused frontend releases and smaller review loops.</p>
+                <div class="repo-metadata" id="domainList">
+                  <a href="#">repohub.local</a>
+                </div>
+                <button class="btn compact" id="addDomainButton">Add Domain</button>
+                <form class="domain-form hidden" id="domainForm">
+                  <input id="domainInput" type="text" placeholder="example.meigal" autocomplete="off">
+                  <button class="btn success" type="submit">Save</button>
+                </form>
+                <div class="topic-list">
+                  <span>frontend</span>
+                  <span>repo-ui</span>
+                  <span>static-app</span>
+                </div>
+              </section>
+              <section class="side-section">
+                <h2>Releases</h2>
+                <div class="release-row">
+                  <svg><use href="#icon-check"></use></svg>
+                  <div>
+                    <strong>v1.0.0</strong>
+                    <span>Latest · yesterday</span>
+                  </div>
+                </div>
+              </section>
+              <section class="side-section">
+                <h2>Languages</h2>
+                <div class="language-bar" aria-hidden="true">
+                  <span class="lang-js"></span>
+                  <span class="lang-css"></span>
+                  <span class="lang-html"></span>
+                </div>
+                <div class="language-list">
+                  <span><b class="dot js"></b> JavaScript 47.2%</span>
+                  <span><b class="dot css"></b> CSS 34.6%</span>
+                  <span><b class="dot html"></b> HTML 18.2%</span>
+                </div>
+              </section>
+              <section class="side-section">
+                <h2>Contributors</h2>
+                <div class="contributors">
+                  <span class="avatar" aria-label="Ariadna">A</span>
+                  <span class="avatar blue-avatar" aria-label="Bruno">B</span>
+                  <span class="avatar green-avatar" aria-label="Cora">C</span>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </section>
+
+        <section class="content-view" id="issuesView" aria-label="Issues">
+          <div class="list-toolbar">
+            <label class="filter-search" for="issueSearch">
+              <svg><use href="#icon-search"></use></svg>
+              <input id="issueSearch" type="search" placeholder="is:issue is:open">
+            </label>
+            <button class="btn success" id="newIssueButton">New issue</button>
+          </div>
+          <div class="activity-list" id="issuesList"></div>
+        </section>
+
+        <section class="content-view" id="pullsView" aria-label="Pull requests">
+          <div class="list-toolbar">
+            <label class="filter-search" for="pullSearch">
+              <svg><use href="#icon-search"></use></svg>
+              <input id="pullSearch" type="search" placeholder="is:pr is:open">
+            </label>
+            <button class="btn success" id="newPullButton">New pull request</button>
+          </div>
+          <div class="activity-list" id="pullsList"></div>
+        </section>
+        <section class="content-view" id="marketplaceView" aria-label="Marketplace">
+          <div class="list-toolbar marketplace-toolbar">
+            <div class="marketplace-heading">
+              <div>
+                <h2>Marketplace gratuito</h2>
+                <p>Instala plantillas gratis para repositorios, páginas estáticas y flujos de trabajo en un clic.</p>
+              </div>
+              <button class="btn success" id="refreshMarketplaceButton">Actualizar</button>
+            </div>
+            <label class="filter-search" for="marketplaceSearch">
+              <svg><use href="#icon-search"></use></svg>
+              <input id="marketplaceSearch" type="search" placeholder="Buscar plantillas gratis">
+            </label>
+          </div>
+          <div class="marketplace-grid" id="marketplaceGrid"></div>
+        </section>
+      </div>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+    <script src="script.js"></script>
+  </body>
+</html>
